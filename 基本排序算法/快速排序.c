@@ -46,7 +46,7 @@ int main(void)
 void Sort(int* nArr, int start, int end)
 {
 	int high = end,
-		low = start;
+	    low = start;
 
 	//标准数
 	int stand = nArr[start];
