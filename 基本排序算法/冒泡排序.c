@@ -2,24 +2,25 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//ð������
+//冒泡排序
 void Sort(int* nArr, int num);
+
 
 int main(void)
 {
 	int* nArr = NULL;
 	int num = 0;
-	printf("������Ҫ�������ٸ�����:");
+	printf("请问你要输入多少个数字:");
 	scanf("%d", &num);
 	nArr = (int*)malloc(sizeof(int) * num);
 
-	printf("������һ������,ÿ������һ������\n");
+	printf("请输入一个数组,每次输入一个数字\n");
 	for (int i = 0; i < num; i++)
 	{
 		scanf("%d", &nArr[i]);
 	}
 
-	printf("������������:");
+	printf("输入的数组是:");
 	for (int i = 0; i < num; i++)
 	{
 		printf("%d ", nArr[i]);
@@ -28,7 +29,7 @@ int main(void)
 
 	Sort(nArr, num);
 
-	printf("���Ǵ�С����������������:");
+	printf("这是从小到大排序后的数组:");
 	for (int i = 0; i < num; i++)
 	{
 		printf("%d ", nArr[i]);
@@ -41,7 +42,7 @@ int main(void)
 	return 0;
 }
 
-//ð������
+//冒泡排序
 void Sort(int* nArr, int num)
 {
 	int temp = 0;
