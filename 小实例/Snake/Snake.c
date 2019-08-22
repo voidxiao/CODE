@@ -12,15 +12,15 @@ int main(void)
 {
 
 	srand((unsigned int)time(NULL));
-	FILE *best = NULL;//×î¸ß·ÖÊıÎÄ¼şÖ¸Õë
+	FILE *best = NULL;//æœ€é«˜åˆ†æ•°æ–‡ä»¶æŒ‡é’ˆ
 	int bestBuffer = 0;
-	if ((best = fopen("best.bin", "r")) == NULL)//Èç¹ûÎÄ¼şÎª¿Õ  ´´½¨ÎÄ¼ş²¢Ğ´Èë×î¸ß·ÖÊı0
+	if ((best = fopen("best.bin", "r")) == NULL)//å¦‚æœæ–‡ä»¶ä¸ºç©º  åˆ›å»ºæ–‡ä»¶å¹¶å†™å…¥æœ€é«˜åˆ†æ•°0
 	{
 		best = fopen("best.bin", "a");
 		fwrite(&bestBuffer, 4, 1, best);
 		fclose(best);
 	}
-	else//Èç¹ûÎÄ¼ş²»Îª¿Õ  ¶ÁÈ¡×î¸ß·ÖÊıĞ´Èë×î¸ß·ÖÊı´¢´æÄÚ´æ  ÈÃ×î¸ß·ÖÊıÏÔÊ¾³öÀ´
+	else//å¦‚æœæ–‡ä»¶ä¸ä¸ºç©º  è¯»å–æœ€é«˜åˆ†æ•°å†™å…¥æœ€é«˜åˆ†æ•°å‚¨å­˜å†…å­˜  è®©æœ€é«˜åˆ†æ•°æ˜¾ç¤ºå‡ºæ¥
 	{
 		//best = fopen("best.bin", "a");
 		fread(&bestBuffer, 4, 1, best);
@@ -29,44 +29,44 @@ int main(void)
 
 
 	int Die = 0, die = 0;
-	int num = 0;//·ÖÊı
-	int SnakeHead[3] = { 10,30,1 };//ÉßÍ·¿ØÖÆ
-	int SnakeBody[100][3] = { {10,32,1},{10,34,1} };//³õÊ¼»¯Á½½ÚÉßÉí
+	int num = 0;//åˆ†æ•°
+	int SnakeHead[3] = { 10,30,1 };//è›‡å¤´æ§åˆ¶
+	int SnakeBody[100][3] = { {10,32,1},{10,34,1} };//åˆå§‹åŒ–ä¸¤èŠ‚è›‡èº«
 	int SnakeLong = 3;
 	int RealSnakeLong = 2;
 	int SnakeLieRecord[6] = { 0 };
-	int Food = 0;//Ê³Îï¿ØÖÆ
+	int Food = 0;//é£Ÿç‰©æ§åˆ¶
 	int FoodX, FoodY;
-	int i, j;//Ñ­»·¿ØÖÆ±äÁ¿
-    char SnakeBackground[20][44] = { "¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€                                      ¨€\n",
-									 "¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€", };
+	int i, j;//å¾ªç¯æ§åˆ¶å˜é‡
+        char SnakeBackground[20][44] = { "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\n",
+				         "â–ˆ                                      â–ˆ\n",
+				         "â–ˆ                                      â–ˆ\n",
+				         "â–ˆ                                      â–ˆ\n",
+				         "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆ                                      â–ˆ\n",
+					 "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ", };
 
-	//µÚÒ»½çÃæ
-	printf("\n\n\t\t\t\t    ¡¶Ì°³ÔÉß¡·");
-	printf("\n\n\t\t\t\tµã»÷ÈÎÒâ¼ü¿ªÊ¼ÓÎÏ·");
+	//ç¬¬ä¸€ç•Œé¢
+	printf("\n\n\t\t\t\t    ã€Šè´ªåƒè›‡ã€‹");
+	printf("\n\n\t\t\t\tç‚¹å‡»ä»»æ„é”®å¼€å§‹æ¸¸æˆ");
 	_getch();
 	while (1)
 	{
 
-		//¼üÅÌ¿ØÖÆÉßµÄ·½Ïò
+		//é”®ç›˜æ§åˆ¶è›‡çš„æ–¹å‘
 		if (GetAsyncKeyState('W') && SnakeHead[2] != 2)
 		{
 			SnakeHead[2] = 5;
@@ -84,7 +84,7 @@ int main(void)
 			SnakeHead[2] = 3;
 		}
 
-		//·ÅÖÃÊ³Îï(ĞÇĞÇ)
+		//æ”¾ç½®é£Ÿç‰©(æ˜Ÿæ˜Ÿ)
 		while (1)
 		{
 		step1:
@@ -105,7 +105,7 @@ int main(void)
 							goto step1;
 						}
 					}
-					strncpy(&SnakeBackground[FoodX][FoodY], "¡î", 2);
+					strncpy(&SnakeBackground[FoodX][FoodY], "â˜†", 2);
 					Food = 1;
 					break;
 				}
@@ -115,23 +115,23 @@ int main(void)
 				}
 			}
 			else
-			{		//·ÀÖ¹Ê³Îï±»Éß¸²¸Çºó¶øÏûÊ§  ÈÃËüÏûÊ§ºóÖØĞÂ´òÓ¡
-				strncpy(&SnakeBackground[FoodX][FoodY], "¡î", 2);
+			{		//é˜²æ­¢é£Ÿç‰©è¢«è›‡è¦†ç›–åè€Œæ¶ˆå¤±  è®©å®ƒæ¶ˆå¤±åé‡æ–°æ‰“å°
+				strncpy(&SnakeBackground[FoodX][FoodY], "â˜†", 2);
 				break;
 			}
 		}
 
-		//·ÅÖÃÉßÆğµã
-		strncpy(&SnakeBackground[SnakeHead[0]][SnakeHead[1]], "¨€", 2);
-		strncpy(&SnakeBackground[SnakeBody[0][0]][SnakeBody[0][1]], "¨€", 2);
-		strncpy(&SnakeBackground[SnakeBody[1][0]][SnakeBody[1][1]], "¨€", 2);
-		//·ÅÖÃÉßÔö³¤²¿·Ö
+		//æ”¾ç½®è›‡èµ·ç‚¹
+		strncpy(&SnakeBackground[SnakeHead[0]][SnakeHead[1]], "â–ˆ", 2);
+		strncpy(&SnakeBackground[SnakeBody[0][0]][SnakeBody[0][1]], "â–ˆ", 2);
+		strncpy(&SnakeBackground[SnakeBody[1][0]][SnakeBody[1][1]], "â–ˆ", 2);
+		//æ”¾ç½®è›‡å¢é•¿éƒ¨åˆ†
 		for (RealSnakeLong = 2; RealSnakeLong < SnakeLong - 1; RealSnakeLong++)
 		{
-			strncpy(&SnakeBackground[SnakeBody[RealSnakeLong][0]][SnakeBody[RealSnakeLong][1]], "¨€", 2);
+			strncpy(&SnakeBackground[SnakeBody[RealSnakeLong][0]][SnakeBody[RealSnakeLong][1]], "â–ˆ", 2);
 		}
 
-		//ÅĞ¶ÏÉß×²ÉßÉí
+		//åˆ¤æ–­è›‡æ’è›‡èº«
 		for (j = 3; j < SnakeLong; j++)
 		{
 			if (SnakeHead[0] == SnakeBody[j][0] && SnakeHead[1] == SnakeBody[j][1])
@@ -140,7 +140,7 @@ int main(void)
 			}
 		}
 
-		//³ÔÊ³ÎïÉß±ä³¤
+		//åƒé£Ÿç‰©è›‡å˜é•¿
 		if (SnakeBody[SnakeLong - 2][2] == 1)
 		{
 			if (SnakeHead[0] == FoodX && SnakeHead[1] == FoodY)
@@ -185,21 +185,21 @@ int main(void)
 				num++;
 			}
 		}
-		//ÅĞ¶Ï×î¸ß·ÖÊı
+		//åˆ¤æ–­æœ€é«˜åˆ†æ•°
 		if (num > bestBuffer)
 		{
 			bestBuffer = num;
 		}
-		//´òÓ¡ÓÎÏ·»­Ãæ
+		//æ‰“å°æ¸¸æˆç”»é¢
 		system("cls");
 		for (i = 0; i < 20; i++)
 		{
 			printf("%s", SnakeBackground[i]);
 		}
-		printf("\n\t\t\t\t\t·ÖÊı:%d", num);
-		printf("\n\t\t\t\t\t×î¸ß·ÖÊı:%d", bestBuffer);
+		printf("\n\t\t\t\t\tåˆ†æ•°:%d", num);
+		printf("\n\t\t\t\t\tæœ€é«˜åˆ†æ•°:%d", bestBuffer);
 
-		//Çå³ı²ĞÁô
+		//æ¸…é™¤æ®‹ç•™
 		strncpy(&SnakeBackground[SnakeHead[0]][SnakeHead[1]], "  ", 2);
 		strncpy(&SnakeBackground[SnakeBody[0][0]][SnakeBody[0][1]], "  ", 2);
 		strncpy(&SnakeBackground[SnakeBody[1][0]][SnakeBody[1][1]], "  ", 2);
@@ -208,15 +208,15 @@ int main(void)
 					strncpy(&SnakeBackground[SnakeBody[RealSnakeLong][0]][SnakeBody[RealSnakeLong][1]], "  ", 2);
 		}
 
-		//ÉßÉí¸ú×ÅÉßÍ·
+		//è›‡èº«è·Ÿç€è›‡å¤´
 		SnakeLieRecord[0] = SnakeBody[0][0];
 		SnakeLieRecord[1] = SnakeBody[0][1];
 		SnakeLieRecord[2] = SnakeBody[0][2];
 		SnakeBody[0][0] = SnakeHead[0];
 		SnakeBody[0][1] = SnakeHead[1];
 		SnakeBody[0][2] = SnakeHead[2];
-		for (j = 1; j < SnakeLong; j++)//ÉßÉí¸ú×ÅÉßÉí j=1´ÓµÚÒ»½ÚÉßÉí¿ªÊ¼  SnakeLongÊÇÉß×î´óµÄ³¤¶È
-		{								//¼ÇÂ¼×îÎ²¶Ë·½ÏòÒÔ±ãÓÚÉú³ÉĞÂµÄÉßÉí
+		for (j = 1; j < SnakeLong; j++)//è›‡èº«è·Ÿç€è›‡èº« j=1ä»ç¬¬ä¸€èŠ‚è›‡èº«å¼€å§‹  SnakeLongæ˜¯è›‡æœ€å¤§çš„é•¿åº¦
+		{								//è®°å½•æœ€å°¾ç«¯æ–¹å‘ä»¥ä¾¿äºç”Ÿæˆæ–°çš„è›‡èº«
 			SnakeLieRecord[3] = SnakeBody[j][0];
 			SnakeLieRecord[4] = SnakeBody[j][1];
 			SnakeLieRecord[5] = SnakeBody[j][2];
@@ -231,7 +231,7 @@ int main(void)
 
 
 
-		//Éß¶¯ÆğÀ´  ²¢ÅĞ¶ÏÉß×²±ß½ç
+		//è›‡åŠ¨èµ·æ¥  å¹¶åˆ¤æ–­è›‡æ’è¾¹ç•Œ
 		if (SnakeHead[2] == 1)
 		{
 			if (SnakeHead[1] == 2)
@@ -295,7 +295,7 @@ int main(void)
 
 
 
-		//ÅĞ¶ÏËÀÍö
+		//åˆ¤æ–­æ­»äº¡
 		if (Die == 2)
 		{
 			goto over1;
@@ -312,7 +312,7 @@ over:
 		fclose(best);
 	}
 	system("cls");
-	printf("\n\n\n\t\t\t\t\n\n\t\t\t\tÓÎÏ·½áÊø!\n");
+	printf("\n\n\n\t\t\t\t\n\n\t\t\t\tæ¸¸æˆç»“æŸ!\n");
 
 
 
