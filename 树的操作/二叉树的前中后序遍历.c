@@ -8,11 +8,6 @@ typedef struct treenode
 	struct treenode* right;
 }TreeNode;
 
-typedef struct
-{
-	TreeNode* root;
-}Tree;
-
 //创建节点
 TreeNode* createNode(int value);
 
@@ -25,12 +20,8 @@ void rearShow(TreeNode* temp);
 
 int main(void)
 {
-	//创建一棵树
-	Tree* tree = (Tree*)malloc(sizeof(Tree));
 	//创建根节点
 	TreeNode* root = createNode(1);
-	//把根节点放到树中
-	tree->root = root;
 	//为根节点创建左子节点
 	root->left = createNode(2);
 	//为根节点创建右子节点
