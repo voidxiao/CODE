@@ -346,11 +346,11 @@ keyCode** createHuffCode(TreeNode* temp, int* index)
 keyCode** count(TreeNode* temp, keyCode** code, int* index)
 {
 	//拿到根节点
-	static TreeNode* root = NULL;
-	if (root == NULL)
-	{
-		root = temp;
-	}
+	//static TreeNode* root = NULL;
+	//if (root == NULL)
+	//{
+	//	root = temp;
+	//}
 
 	if (temp->data != '\0')
 	{
